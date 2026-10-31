@@ -16,7 +16,7 @@
 :root{
   --bg:#F2F4EE; --surface:#FFFFFF; --ink:#1A2A21; --muted:#56655B; --line:#D6DDD2;
   --leaf:#2F5A43; --leaf-soft:#E1EBE2; --beet:#8C2A4B; --beet-soft:#F4E3E9; --saffron:#D99A2B;
-  --on-accent:#FFFFFF; --outside:#E3E9E1; --shadow:0 14px 32px -20px rgba(26,42,33,.5);
+  --on-accent:#FFFFFF; --paper:#FFFFFF; --outside:#E3E9E1; --shadow:0 14px 32px -20px rgba(26,42,33,.5);
   --display:"Young Serif", Georgia, "Times New Roman", serif;
   --body:"Figtree", -apple-system, system-ui, "Segoe UI", sans-serif;
   --tabbar:64px;
@@ -24,11 +24,11 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#111A15; --surface:#18241D; --ink:#E9EFE8; --muted:#A3B2A7; --line:#2C3B32;
   --leaf:#8CC4A3; --leaf-soft:#1E3127; --beet:#E58AA9; --beet-soft:#3A1E29; --saffron:#E8B654;
-  --on-accent:#111A15; --outside:#0B110D; --shadow:0 14px 32px -20px rgba(0,0,0,.9); color-scheme:dark}}
+  --on-accent:#111A15; --paper:#E9EDE6; --outside:#0B110D; --shadow:0 14px 32px -20px rgba(0,0,0,.9); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#111A15; --surface:#18241D; --ink:#E9EFE8; --muted:#A3B2A7; --line:#2C3B32;
   --leaf:#8CC4A3; --leaf-soft:#1E3127; --beet:#E58AA9; --beet-soft:#3A1E29; --saffron:#E8B654;
-  --on-accent:#111A15; --outside:#0B110D; --shadow:0 14px 32px -20px rgba(0,0,0,.9); color-scheme:dark}
+  --on-accent:#111A15; --paper:#E9EDE6; --outside:#0B110D; --shadow:0 14px 32px -20px rgba(0,0,0,.9); color-scheme:dark}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -74,10 +74,17 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:co
 .hero{padding-block:28px 36px}
 .hero h1{font-size:clamp(2.3rem,11vw,3rem)}
 .hero h1 em{font-style:normal;color:var(--beet)}
-.plate{width:min(250px,64vw);aspect-ratio:1;margin:4px auto 0;position:relative}
-.plate svg{width:100%;height:100%;display:block}
-.spin{transform-origin:100px 100px;animation:spin 40s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+.art{margin:4px 0 0;background:var(--paper);border-radius:22px;padding:22px 14px 30px;box-shadow:var(--shadow)}
+.art img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+.portrait{margin:0;position:relative}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:50% 18%;border-radius:22px}
+.portrait figcaption{position:absolute;left:12px;bottom:12px;background:var(--surface);font-weight:600;font-size:.8rem;padding:7px 12px;border-radius:999px}
+.facts{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:.95rem}
+.facts li{display:grid;grid-template-columns:20px 1fr;gap:10px}
+.facts svg{width:20px;height:20px;color:var(--beet);margin-top:2px}
+.hyp-photo{margin:0}
+.hyp-photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 62%;border-radius:22px}
+.hyp-photo figcaption{margin-top:10px;font-family:var(--display);font-size:1.05rem;opacity:.9}
 .quote{background:var(--surface);border-radius:18px;padding:16px 18px;box-shadow:var(--shadow);font-family:var(--display);font-size:1.02rem;line-height:1.35;margin-top:-28px;position:relative}
 .quote small{display:block;margin-top:6px;font:600 .72rem var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 
@@ -203,20 +210,25 @@ footer{padding-block:28px;color:var(--muted);font-size:.85rem;display:grid;gap:4
         <a href="https://maps.apple.com/?q=36%20rue%20de%20l%27Ancienne%20Distillerie%2C%2069400%20Gleiz%C3%A9" target="_blank" rel="noopener"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>Itinéraire</a>
         <a href="#plaisir"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg></span>Le test</a>
       </div>
-      <div class="plate" aria-hidden="true">
-        <svg viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="96" fill="var(--surface)"/>
-          <circle cx="100" cy="100" r="78" fill="none" stroke="var(--line)" stroke-width="2"/>
-          <g class="spin">
-            <g fill="var(--leaf)"><ellipse cx="100" cy="40" rx="18" ry="8" transform="rotate(-20 100 40)"/><ellipse cx="45" cy="118" rx="16" ry="7" transform="rotate(60 45 118)"/><ellipse cx="140" cy="150" rx="17" ry="7" transform="rotate(25 140 150)"/><ellipse cx="96" cy="112" rx="12" ry="5" transform="rotate(-50 96 112)"/></g>
-            <g fill="var(--beet)"><circle cx="150" cy="75" r="13"/><circle cx="70" cy="70" r="9"/><circle cx="95" cy="160" r="11"/></g>
-            <g fill="none" stroke="var(--surface)" stroke-width="1.5" opacity=".5"><circle cx="150" cy="75" r="7"/><circle cx="95" cy="160" r="6"/></g>
-            <g fill="var(--saffron)"><circle cx="58" cy="152" r="12"/><circle cx="130" cy="110" r="8"/><circle cx="62" cy="40" r="7"/></g>
-            <g stroke="var(--surface)" stroke-width="1.4"><path d="M46 152h24M58 140v24M50 144l16 16M66 144l-16 16"/><path d="M122 110h16M130 102v16"/></g>
-          </g>
-        </svg>
-      </div>
+      <figure class="art">
+        <img src="images/illustration-fruits.jpg" width="590" height="490" alt="Illustration de cinq silhouettes habillées de fraise, mangue, citron, blette et chou rouge">
+      </figure>
       <div class="quote">« Que ta nourriture soit ton médicament, que ton médicament soit ta nourriture. »<small>Hippocrate</small></div>
+    </section>
+
+    <section class="pad" id="myriam">
+      <figure class="portrait">
+        <img src="images/myriam-cabinet.jpg" width="800" height="1052" loading="lazy" alt="Myriam Douste-Lombre à son bureau, au cabinet de Gleizé">
+        <figcaption>Au cabinet, à Gleizé</figcaption>
+      </figure>
+      <p class="eyebrow">Votre accompagnement</p>
+      <h2>Myriam Douste-Lombre</h2>
+      <p class="lead">Myriam vous reçoit à la maison de santé des Grillons, à Gleizé. Chaque séance laisse place à la discussion : on fait le point, on réajuste, on avance à votre rythme.</p>
+      <ul class="facts">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg><span><strong>Alimentation</strong> : je mange, je maigris, je stabilise</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg><span><strong>Hypnose</strong> : poids, tabac, stress</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg><span><strong>Sans culpabilité</strong> : aucun aliment interdit</span></li>
+      </ul>
     </section>
 
     <section class="journey" id="parcours" style="padding-inline:0">
@@ -292,6 +304,10 @@ footer{padding-block:28px;color:var(--muted);font-size:.85rem;display:grid;gap:4
     <section class="hyp pad" id="hypnose">
       <p class="eyebrow">Hypnose</p>
       <h2>Devenir acteur de son changement</h2>
+      <figure class="hyp-photo">
+        <img src="images/myriam-meditation.jpg" width="960" height="1200" loading="lazy" alt="Myriam Douste-Lombre en méditation au bord du Grand Canyon">
+        <figcaption>Respirer, lâcher prise, se retrouver.</figcaption>
+      </figure>
       <p class="lead">Un état naturel, que nous vivons tous plusieurs fois par jour. En cabinet, il sert à accompagner un changement que vous avez choisi. Pas de magie, pas de manipulation.</p>
       <div class="acc">
         <details open>

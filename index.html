@@ -18,18 +18,18 @@
 :root{
   --bg:#F2F4EE; --surface:#FFFFFF; --ink:#1A2A21; --muted:#56655B; --line:#D6DDD2;
   --leaf:#2F5A43; --leaf-soft:#E1EBE2; --beet:#8C2A4B; --beet-soft:#F4E3E9; --saffron:#D99A2B;
-  --on-accent:#FFFFFF; --shadow:0 18px 40px -24px rgba(26,42,33,.45);
+  --on-accent:#FFFFFF; --paper:#FFFFFF; --shadow:0 18px 40px -24px rgba(26,42,33,.45);
   --display:"Young Serif", Georgia, "Times New Roman", serif;
   --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#111A15; --surface:#18241D; --ink:#E9EFE8; --muted:#A3B2A7; --line:#2C3B32;
   --leaf:#8CC4A3; --leaf-soft:#1E3127; --beet:#E58AA9; --beet-soft:#3A1E29; --saffron:#E8B654;
-  --on-accent:#111A15; --shadow:0 18px 40px -24px rgba(0,0,0,.8); color-scheme:dark}}
+  --on-accent:#111A15; --paper:#E9EDE6; --shadow:0 18px 40px -24px rgba(0,0,0,.8); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#111A15; --surface:#18241D; --ink:#E9EFE8; --muted:#A3B2A7; --line:#2C3B32;
   --leaf:#8CC4A3; --leaf-soft:#1E3127; --beet:#E58AA9; --beet-soft:#3A1E29; --saffron:#E8B654;
-  --on-accent:#111A15; --shadow:0 18px 40px -24px rgba(0,0,0,.8); color-scheme:dark}
+  --on-accent:#111A15; --paper:#E9EDE6; --shadow:0 18px 40px -24px rgba(0,0,0,.8); color-scheme:dark}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -87,11 +87,35 @@ nav.main .btn:hover{background:var(--beet);color:var(--on-accent)}
 .hero .meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:28px;font-size:.92rem;color:var(--muted)}
 .hero .meta span{display:inline-flex;align-items:center;gap:7px}
 .hero .meta svg{width:16px;height:16px;color:var(--leaf)}
-.plate{position:relative;aspect-ratio:1;max-width:100%;width:100%;min-width:0}
-.plate canvas{width:100%;height:100%;display:block}
+.plate{position:relative;max-width:100%;width:100%;min-width:0;padding-bottom:56px}
+.art{background:var(--paper);border-radius:28px;padding:28px 22px 18px;box-shadow:var(--shadow)}
+.art img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+
 .quote-card{position:absolute;left:-6%;bottom:2%;max-width:78%;background:var(--surface);border-radius:18px;padding:18px 20px;box-shadow:var(--shadow);font-family:var(--display);font-size:1.05rem;line-height:1.35}
 .quote-card small{display:block;font-family:var(--body);font-size:.8rem;color:var(--muted);margin-top:8px;letter-spacing:.06em;text-transform:uppercase}
-@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.plate{max-width:420px;margin:0 auto}.quote-card{left:0}}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.plate{max-width:460px;margin:0 auto}.quote-card{left:0}}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,72px);align-items:center}
+.about-grid > *{min-width:0}
+.portrait{margin:0;position:relative}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:28px;box-shadow:var(--shadow)}
+.portrait figcaption{position:absolute;left:16px;bottom:16px;background:var(--surface);color:var(--ink);font-weight:600;font-size:.85rem;padding:8px 14px;border-radius:999px;display:flex;align-items:center;gap:8px}
+.portrait figcaption::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--leaf)}
+.about-text{display:grid;gap:18px}
+.about-text p{color:var(--muted);font-size:1.08rem;max-width:56ch}
+.facts{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.facts li{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start}
+.facts svg{width:22px;height:22px;color:var(--beet);margin-top:2px}
+.about-text .btn{justify-self:start}
+@media (max-width:820px){.about-grid{grid-template-columns:1fr}.portrait{max-width:440px}}
+/* hypnose photo */
+.hyp-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,4vw,56px);align-items:start}
+.hyp-grid > *{min-width:0}
+.hyp-photo{margin:0;position:sticky;top:88px}
+.hyp-photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 60%;border-radius:28px}
+.hyp-photo figcaption{margin-top:12px;font-family:var(--display);font-size:1.15rem;opacity:.9}
+@media (max-width:820px){.hyp-grid{grid-template-columns:1fr}.hyp-photo{position:static}.hyp-photo img{aspect-ratio:1/1}}
 
 /* journey */
 .journey{background:var(--surface);border-block:1px solid var(--line)}
@@ -205,8 +229,8 @@ textarea{min-height:110px;resize:vertical}
   section{padding-block:56px}
   .hero{padding-block:32px 48px}
   .hero .ctas .btn{flex:1 1 100%;justify-content:center}
-  .plate{max-width:300px;margin-top:8px}
-  .quote-card{position:relative;left:auto;bottom:auto;max-width:none;margin-top:-40px}
+  .plate{margin-top:8px;padding-bottom:0}
+  .quote-card{position:relative;left:auto;bottom:auto;max-width:none;margin:-28px 12px 0}
   .sec-head{margin-bottom:28px}
   .tabs{grid-template-columns:repeat(3,1fr);gap:6px;position:sticky;top:calc(64px + env(safe-area-inset-top,0px));z-index:5;background:var(--surface);padding-block:8px}
   .tab{padding:10px 8px;border-radius:12px;text-align:center;justify-items:center}
@@ -249,6 +273,7 @@ footer{border-top:1px solid var(--line);padding-block:36px calc(36px + 72px)}
     <a class="logo" href="#accueil"><i>M</i>Myriam Douste-Lombre</a>
     <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
     <nav class="main" id="menu" aria-label="Navigation principale">
+      <a href="#myriam" data-link>Myriam</a>
       <a href="#parcours" data-link>Je mange</a>
       <a href="#parcours" data-link data-step="1">Je maigris</a>
       <a href="#parcours" data-link data-step="2">Je stabilise</a>
@@ -276,9 +301,31 @@ footer{border-top:1px solid var(--line);padding-block:36px calc(36px + 72px)}
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>06 31 43 56 73</span>
         </div>
       </div>
-      <div class="plate" aria-hidden="true">
-        <canvas id="plate"></canvas>
+      <div class="plate">
+        <figure class="art" style="margin:0">
+          <img src="images/illustration-fruits.jpg" width="590" height="490" alt="Illustration de cinq silhouettes habillées de fraise, mangue, citron, blette et chou rouge">
+        </figure>
         <div class="quote-card">« Que ta nourriture soit ton médicament, que ton médicament soit ta nourriture. »<small>Hippocrate</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="myriam">
+    <div class="wrap about-grid">
+      <figure class="portrait">
+        <img src="images/myriam-cabinet.jpg" width="800" height="1052" loading="lazy" alt="Myriam Douste-Lombre à son bureau, au cabinet de Gleizé">
+        <figcaption>Au cabinet, à Gleizé</figcaption>
+      </figure>
+      <div class="about-text">
+        <p class="eyebrow">Votre accompagnement</p>
+        <h2>Myriam Douste-Lombre</h2>
+        <p>Myriam vous reçoit à la maison de santé des Grillons, à Gleizé, pour un accompagnement alimentaire et des séances d'hypnose. Chaque séance laisse place à la discussion : on fait le point, on réajuste, et on avance vers votre objectif, à votre rythme.</p>
+        <ul class="facts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg><span><strong>Alimentation</strong> : je mange, je maigris, je stabilise</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg><span><strong>Hypnose</strong> : poids, tabac, stress et confiance en soi</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg><span><strong>Sans culpabilité</strong> : aucun aliment interdit, juste de l'équilibre</span></li>
+        </ul>
+        <a class="btn btn-primary" href="#rdv">Prendre rendez-vous</a>
       </div>
     </div>
   </section>
@@ -383,6 +430,12 @@ footer{border-top:1px solid var(--line);padding-block:36px calc(36px + 72px)}
         <h2>Devenir acteur de son changement</h2>
         <p>Il suffit d'une seule personne pour changer votre vie : vous. L'hypnose est un état naturel, que nous vivons tous plusieurs fois par jour. En cabinet, elle sert à accompagner un changement que vous avez choisi. Pas de magie, pas de manipulation, et rien à voir avec l'hypnose de spectacle.</p>
       </div>
+      <div class="hyp-grid">
+      <figure class="hyp-photo">
+        <img src="images/myriam-meditation.jpg" width="960" height="1200" loading="lazy" alt="Myriam Douste-Lombre en méditation au bord du Grand Canyon">
+        <figcaption>Respirer, lâcher prise, se retrouver.</figcaption>
+      </figure>
+      <div>
       <div class="acc">
         <details open>
           <summary><span>Hypnose et poids<small>Se retrouver soi-même</small></span><span class="plus" aria-hidden="true">+</span></summary>
@@ -408,6 +461,8 @@ footer{border-top:1px solid var(--line);padding-block:36px calc(36px + 72px)}
       <div class="hyp-note">
         <p>Il n'y a pas de changement sans volonté personnelle de changer. Si vous êtes prêt·e, parlons-en.</p>
         <a class="btn btn-primary" href="#rdv">Réserver une séance</a>
+      </div>
+      </div>
       </div>
     </div>
   </section>
@@ -527,7 +582,7 @@ window.addEventListener('error',e=>{const t=document.getElementById('toast');if(
   // active nav on scroll
   const navLinks=$$('#menu a[data-link]:not(.btn)');
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id='#'+e.target.id;navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')===id&&(id!=='#parcours'||+(a.dataset.step||0)===curStep())))}}),{rootMargin:'-45% 0px -50% 0px'});
-  ['parcours','hypnose','rdv','accueil','plaisir'].forEach(id=>io.observe(document.getElementById(id)));
+  ['parcours','hypnose','rdv','accueil','plaisir','myriam'].forEach(id=>io.observe(document.getElementById(id)));
 
   // pleasure check: handled in CSS (:has), so it also works without JavaScript
 
@@ -573,29 +628,6 @@ window.addEventListener('error',e=>{const t=document.getElementById('toast');if(
   });
   $('#copyMsg').addEventListener('click',()=>copy($('#outText').textContent,$('#outText'),'Message copié'));
 
-  // hero plate: a slowly turning plate of seasonal produce
-  const cv=$('#plate'), cx=cv.getContext('2d');
-  const items=[];const seed=[[.28,0,'leaf',1],[.3,1.1,'beet',.9],[.27,2.2,'saffron',.8],[.3,3.3,'leaf',.7],[.26,4.4,'beet',1.1],[.29,5.4,'saffron',.9],[.12,.6,'beet',.7],[.13,2.7,'leaf',.8],[.11,4.6,'saffron',.6]];
-  seed.forEach(s=>items.push({r:s[0],a:s[1],c:s[2],k:s[3]}));
-  function col(n){return getComputedStyle(document.documentElement).getPropertyValue('--'+n).trim()}
-  function size(){const b=cv.getBoundingClientRect(),d=devicePixelRatio||1;cv.width=b.width*d;cv.height=b.height*d}
-  function draw(t){
-    const w=cv.width,h=cv.height,R=Math.min(w,h)/2;cx.clearRect(0,0,w,h);cx.save();cx.translate(w/2,h/2);
-    cx.fillStyle=col('surface');cx.beginPath();cx.arc(0,0,R*.96,0,7);cx.fill();
-    cx.strokeStyle=col('line');cx.lineWidth=R*.012;cx.beginPath();cx.arc(0,0,R*.78,0,7);cx.stroke();
-    const rot=reduce?0:t/14000;
-    items.forEach((it,i)=>{
-      const a=it.a+rot, x=Math.cos(a)*R*it.r*1.9, y=Math.sin(a)*R*it.r*1.9, s=R*.13*it.k;
-      cx.save();cx.translate(x,y);cx.rotate(a*1.5+i);cx.fillStyle=col(it.c);
-      if(it.c==='leaf'){cx.beginPath();cx.ellipse(0,0,s*1.3,s*.6,0,0,7);cx.fill();cx.strokeStyle=col('surface');cx.lineWidth=s*.08;cx.beginPath();cx.moveTo(-s*1.1,0);cx.lineTo(s*1.1,0);cx.stroke()}
-      else if(it.c==='beet'){cx.beginPath();cx.arc(0,0,s*.85,0,7);cx.fill();cx.strokeStyle=col('surface');cx.globalAlpha=.35;cx.lineWidth=s*.07;for(let k=1;k<3;k++){cx.beginPath();cx.arc(0,0,s*.28*k,0,7);cx.stroke()}cx.globalAlpha=1}
-      else{cx.beginPath();cx.arc(0,0,s*.9,0,7);cx.fill();cx.strokeStyle=col('surface');cx.lineWidth=s*.06;for(let k=0;k<6;k++){cx.beginPath();cx.moveTo(0,0);cx.lineTo(Math.cos(k*1.047)*s*.8,Math.sin(k*1.047)*s*.8);cx.stroke()}}
-      cx.restore();
-    });
-    cx.restore();
-    if(!reduce)requestAnimationFrame(draw);
-  }
-  size();addEventListener('resize',size);requestAnimationFrame(draw);
 })();
 </script>
 

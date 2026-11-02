@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Myriam Douste-Lombre : accompagnement alimentaire et hypnose à Gleizé (69400). Je mange, je maigris, je stabilise. Rendez-vous au 06 31 43 56 73.">
+<meta name="description" content="Myriam Douste-Lombre, diététicienne-nutritionniste diplômée d’État et hypnopraticienne à Gleizé (69400). Rendez-vous au 06 31 43 56 73.">
 <meta name="theme-color" content="#2F5A43">
 <meta name="format-detection" content="telephone=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -250,9 +250,18 @@ textarea{min-height:110px;resize:vertical}
 }
 @media (max-width:360px){.chips{grid-template-columns:1fr}}
 footer{border-top:1px solid var(--line);padding-block:36px calc(36px + 72px)}
-.foot{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center;color:var(--muted);font-size:.92rem}
-.foot nav{display:flex;flex-wrap:wrap;gap:6px 18px}
-.foot a{text-decoration:none}.foot a:hover{color:var(--ink)}
+.slogan{font-family:var(--display);font-size:clamp(1.4rem,3vw,2rem);line-height:1.25;color:var(--beet);max-width:30em;text-wrap:balance;margin-bottom:36px}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1.2fr .9fr;gap:28px 32px;color:var(--muted);font-size:.95rem}
+.foot-col{display:grid;gap:8px;align-content:start;min-width:0}
+.foot-col a{text-decoration:none;justify-self:start}
+.foot-col a:hover{color:var(--ink)}
+.foot-col address{font-style:normal}
+.foot-name{font-family:var(--display);font-size:1.25rem;color:var(--ink)}
+.foot-h{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf)}
+.foot-tel{font-family:var(--display);font-size:1.3rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:36px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+@media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.foot-grid{grid-template-columns:1fr}}
 
 /* mobile call bar */
 .callbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;gap:10px;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:var(--surface);border-top:1px solid var(--line)}
@@ -317,10 +326,11 @@ footer{border-top:1px solid var(--line);padding-block:36px calc(36px + 72px)}
         <figcaption>Au cabinet, à Gleizé</figcaption>
       </figure>
       <div class="about-text">
-        <p class="eyebrow">Votre accompagnement</p>
+        <p class="eyebrow">Diététicienne-nutritionniste · Hypnopraticienne</p>
         <h2>Myriam Douste-Lombre</h2>
         <p>Myriam vous reçoit à la maison de santé des Grillons, à Gleizé, pour un accompagnement alimentaire et des séances d'hypnose. Chaque séance laisse place à la discussion : on fait le point, on réajuste, et on avance vers votre objectif, à votre rythme.</p>
         <ul class="facts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg><span><strong>Diplômée d'État</strong> en diététique et nutrition</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg><span><strong>Alimentation</strong> : je mange, je maigris, je stabilise</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg><span><strong>Hypnose</strong> : poids, tabac, stress et confiance en soi</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg><span><strong>Sans culpabilité</strong> : aucun aliment interdit, juste de l'équilibre</span></li>
@@ -540,11 +550,30 @@ footer{border-top:1px solid var(--line);padding-block:36px calc(36px + 72px)}
 </main>
 
 <footer>
-  <div class="wrap foot">
-    <span>© Myriam Douste-Lombre · Gleizé (69)</span>
-    <nav aria-label="Pied de page">
-      <a href="#parcours">Je mange</a><a href="#parcours" data-step="1">Je maigris</a><a href="#parcours" data-step="2">Je stabilise</a><a href="#hypnose">Hypnose</a><a href="#rdv">Rendez-vous</a>
-    </nav>
+  <div class="wrap">
+    <p class="slogan">« Quel que soit le problème, la solution n'est pas dans le frigo. »</p>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-name">Myriam Douste-Lombre</p>
+        <p>Diététicienne-Nutritionniste<br>Diplômée d'État<br>Hypnopraticienne</p>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Contact</p>
+        <a class="foot-tel" href="tel:+33631435673" data-call>06 31 43 56 73</a>
+        <a href="#rdv">Prendre rendez-vous</a>
+        <a href="https://www.facebook.com/search/top?q=Myriam%20Douste-Lombre" target="_blank" rel="noopener">Page Facebook</a>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Cabinet</p>
+        <address>MSP des Grillons, bâtiment B<br>36 rue de l'Ancienne Distillerie<br>69400 Gleizé</address>
+        <p>Derrière le lycée Louis Armand</p>
+      </div>
+      <nav class="foot-col" aria-label="Pied de page">
+        <p class="foot-h">Le site</p>
+        <a href="#myriam">Qui suis-je</a><a href="#parcours">Je mange</a><a href="#parcours" data-step="1">Je maigris</a><a href="#parcours" data-step="2">Je stabilise</a><a href="#hypnose">Hypnose</a>
+      </nav>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Myriam Douste-Lombre</span><span>douste-lombre-myriam.fr</span></div>
   </div>
 </footer>
 

@@ -85,6 +85,9 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:co
 .hyp-photo{margin:0}
 .hyp-photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 62%;border-radius:22px}
 .hyp-photo figcaption{margin-top:10px;font-family:var(--display);font-size:1.05rem;opacity:.9}
+.cabinet{margin:0;display:grid;gap:8px}
+.cabinet img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:40% 50%;border-radius:16px}
+.cabinet figcaption{font-size:.85rem;color:var(--muted)}
 .quote{background:var(--surface);border-radius:18px;padding:16px 18px;box-shadow:var(--shadow);font-family:var(--display);font-size:1.02rem;line-height:1.35;margin-top:-28px;position:relative}
 .quote small{display:block;margin-top:6px;font:600 .72rem var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 
@@ -369,6 +372,10 @@ footer{padding-block:36px 28px;color:var(--muted);font-size:.92rem;display:grid;
 
       <div class="card">
         <p class="eyebrow" style="color:var(--leaf)">Adresse du cabinet</p>
+        <figure class="cabinet">
+          <img src="images/cabinet.jpg" width="1400" height="788" loading="lazy" alt="Le cabinet de Myriam Douste-Lombre : fauteuil, bibliothèque et grande fenêtre lumineuse">
+          <figcaption>Un espace calme et lumineux pour vos séances.</figcaption>
+        </figure>
         <p class="addr">MSP des Grillons, bâtiment B<br>36 rue de l'Ancienne Distillerie<br>69400 Gleizé</p>
         <ol class="access">
           <li>ZAC des Grillons, derrière le lycée Louis Armand.</li>

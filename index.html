@@ -163,10 +163,18 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:co
 .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:14px}
 .phone{font-family:var(--display);font-size:2.1rem;font-variant-numeric:tabular-nums;-webkit-user-select:all;user-select:all;line-height:1}
 .motifs{display:grid;gap:8px}
-.motifs a{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:12px;min-height:52px;padding:10px 16px;border-radius:14px;background:var(--bg);border:1.5px solid var(--line);text-decoration:none;font-weight:600;font-size:.95rem}
-.motifs a small{grid-row:2;grid-column:1;font-weight:500;font-size:.8rem;color:var(--muted)}
-.motifs a svg{grid-row:1/3;grid-column:2;width:18px;height:18px;color:var(--beet)}
-.motifs a:active{border-color:var(--beet);background:var(--beet-soft)}
+.motif{border-radius:14px;background:var(--bg);border:1.5px solid var(--line);transition:border-color .15s,background .15s}
+.motif[open]{border-color:var(--beet);background:var(--beet-soft)}
+.motif summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:12px;min-height:52px;padding:10px 16px;font-weight:600;font-size:.95rem;-webkit-user-select:none;user-select:none}
+.motif summary::-webkit-details-marker{display:none}
+.motif summary small{grid-row:2;grid-column:1;font-weight:500;font-size:.8rem;color:var(--muted)}
+.motif summary svg{grid-row:1/3;grid-column:2;width:18px;height:18px;color:var(--beet);transition:transform .2s}
+.motif[open] summary svg{transform:rotate(90deg)}
+.motif-body{padding:0 16px 16px;display:grid;gap:10px}
+.motif-body .duo{grid-template-columns:1.6fr 1fr}
+.motif-body .btn{white-space:nowrap;padding:0 14px}
+html:not(.js) .motif-body .duo{grid-template-columns:1fr}
+.msg{background:var(--surface);border-radius:12px;padding:12px 14px;font-size:.92rem;line-height:1.45;-webkit-user-select:all;user-select:all}
 .addr{font-size:1.02rem}
 .access{margin:0;padding:0;list-style:none;display:grid;gap:10px;counter-reset:a}
 .access li{display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:.92rem;color:var(--muted)}
@@ -432,20 +440,74 @@ footer{padding-block:36px 28px;color:var(--muted);font-size:.92rem;display:grid;
         <div class="duo">
           <a class="btn btn-primary" href="tel:+33631435673"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Appeler</a>
           <button class="btn btn-ghost js-only" id="copyPhone" type="button">Copier</button>
-          <a class="btn btn-ghost no-js-sms" href="sms:+33631435673">SMS</a>
+          <a class="btn btn-ghost no-js-sms" href="sms:+33631435673" target="_blank" rel="noopener">SMS</a>
         </div>
       </div>
 
       <div class="card card-sms">
         <p class="eyebrow" style="color:var(--leaf)">Demander un RDV par SMS</p>
-        <p class="hint">Choisissez votre motif : le message s'écrit tout seul, il ne reste qu'à ajouter votre prénom et l'envoyer.</p>
+        <p class="hint">Touchez votre motif : le message est déjà écrit. Ajoutez votre prénom, puis envoyez-le par SMS au 06 31 43 56 73.</p>
         <div class="motifs">
-          <a href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20un%20r%C3%A9%C3%A9quilibrage%20alimentaire.%20Je%20m%27appelle%20">Rééquilibrage alimentaire<small>Je mange</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
-          <a href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20une%20perte%20de%20poids.%20Je%20m%27appelle%20">Perte de poids<small>Je maigris</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
-          <a href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20stabiliser%20mon%20poids.%20Je%20m%27appelle%20">Stabilisation<small>Je stabilise</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
-          <a href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20une%20s%C3%A9ance%20d%27hypnose%20(poids).%20Je%20m%27appelle%20">Hypnose : poids<small>Pleine conscience, motivation</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
-          <a href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20une%20s%C3%A9ance%20d%27hypnose%20pour%20arr%C3%AAter%20de%20fumer.%20Je%20m%27appelle%20">Hypnose : tabac<small>Arrêter de fumer</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
-          <a href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20une%20s%C3%A9ance%20d%27hypnose%20(stress%2C%20peurs%2C%20confiance).%20Je%20m%27appelle%20">Hypnose : stress, peurs<small>Je change</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></a>
+          <details class="motif">
+            <summary>Rééquilibrage alimentaire<small>Je mange</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></summary>
+            <div class="motif-body">
+              <p class="msg">Bonjour Myriam, je souhaiterais prendre rendez-vous pour un rééquilibrage alimentaire. Je m&#x27;appelle …</p>
+              <div class="duo">
+                <a class="btn btn-primary" href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20un%20r%C3%A9%C3%A9quilibrage%20alimentaire.%20Je%20m%27appelle%20" target="_blank" rel="noopener">Envoyer par SMS</a>
+                <button class="btn btn-ghost js-only copy-msg" type="button">Copier</button>
+              </div>
+            </div>
+          </details>
+          <details class="motif">
+            <summary>Perte de poids<small>Je maigris</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></summary>
+            <div class="motif-body">
+              <p class="msg">Bonjour Myriam, je souhaiterais prendre rendez-vous pour une perte de poids. Je m&#x27;appelle …</p>
+              <div class="duo">
+                <a class="btn btn-primary" href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20une%20perte%20de%20poids.%20Je%20m%27appelle%20" target="_blank" rel="noopener">Envoyer par SMS</a>
+                <button class="btn btn-ghost js-only copy-msg" type="button">Copier</button>
+              </div>
+            </div>
+          </details>
+          <details class="motif">
+            <summary>Stabilisation<small>Je stabilise</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></summary>
+            <div class="motif-body">
+              <p class="msg">Bonjour Myriam, je souhaiterais prendre rendez-vous pour stabiliser mon poids. Je m&#x27;appelle …</p>
+              <div class="duo">
+                <a class="btn btn-primary" href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20stabiliser%20mon%20poids.%20Je%20m%27appelle%20" target="_blank" rel="noopener">Envoyer par SMS</a>
+                <button class="btn btn-ghost js-only copy-msg" type="button">Copier</button>
+              </div>
+            </div>
+          </details>
+          <details class="motif">
+            <summary>Hypnose : poids<small>Pleine conscience, motivation</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></summary>
+            <div class="motif-body">
+              <p class="msg">Bonjour Myriam, je souhaiterais prendre rendez-vous pour une séance d&#x27;hypnose (poids). Je m&#x27;appelle …</p>
+              <div class="duo">
+                <a class="btn btn-primary" href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20une%20s%C3%A9ance%20d%27hypnose%20(poids).%20Je%20m%27appelle%20" target="_blank" rel="noopener">Envoyer par SMS</a>
+                <button class="btn btn-ghost js-only copy-msg" type="button">Copier</button>
+              </div>
+            </div>
+          </details>
+          <details class="motif">
+            <summary>Hypnose : tabac<small>Arrêter de fumer</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></summary>
+            <div class="motif-body">
+              <p class="msg">Bonjour Myriam, je souhaiterais prendre rendez-vous pour une séance d&#x27;hypnose pour arrêter de fumer. Je m&#x27;appelle …</p>
+              <div class="duo">
+                <a class="btn btn-primary" href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20une%20s%C3%A9ance%20d%27hypnose%20pour%20arr%C3%AAter%20de%20fumer.%20Je%20m%27appelle%20" target="_blank" rel="noopener">Envoyer par SMS</a>
+                <button class="btn btn-ghost js-only copy-msg" type="button">Copier</button>
+              </div>
+            </div>
+          </details>
+          <details class="motif">
+            <summary>Hypnose : stress, peurs<small>Je change</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></summary>
+            <div class="motif-body">
+              <p class="msg">Bonjour Myriam, je souhaiterais prendre rendez-vous pour une séance d&#x27;hypnose (stress, peurs, confiance). Je m&#x27;appelle …</p>
+              <div class="duo">
+                <a class="btn btn-primary" href="sms:+33631435673?&amp;body=Bonjour%20Myriam%2C%20je%20souhaiterais%20prendre%20rendez-vous%20pour%20une%20s%C3%A9ance%20d%27hypnose%20(stress%2C%20peurs%2C%20confiance).%20Je%20m%27appelle%20" target="_blank" rel="noopener">Envoyer par SMS</a>
+                <button class="btn btn-ghost js-only copy-msg" type="button">Copier</button>
+              </div>
+            </div>
+          </details>
         </div>
       </div>
 
@@ -509,6 +571,11 @@ footer{padding-block:36px 28px;color:var(--muted);font-size:.92rem;display:grid;
   var sms=document.querySelector('.no-js-sms'); if(sms) sms.hidden=true;
   var toast=document.getElementById('toast'), t;
   function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(t);t=setTimeout(function(){toast.classList.remove('show')},2200)}
+  document.querySelectorAll('.copy-msg').forEach(function(b){b.addEventListener('click',function(){
+    var p=b.closest('.motif-body').querySelector('.msg');
+    var sel=function(){var r=document.createRange();r.selectNodeContents(p);var s=getSelection();s.removeAllRanges();s.addRange(r);say('Message sélectionné : copiez-le')};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p.textContent).then(function(){say('Message copié : collez-le dans un SMS au 06 31 43 56 73')},sel)}else sel();
+  })});
   document.getElementById('copyPhone').addEventListener('click',function(){
     var done=function(){say('Numéro copié')};
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText('06 31 43 56 73').then(done,select)}else select();

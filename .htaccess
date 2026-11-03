@@ -1,0 +1,16 @@
+# Site de Myriam Douste-Lombre
+RewriteEngine On
+
+# Anciennes pages WordPress -> sections du nouveau site
+RewriteRule ^je-mange/?$      /#parcours [R=301,NE,L]
+RewriteRule ^je-maigris/?$    /#parcours [R=301,NE,L]
+RewriteRule ^je-stabilise/?$  /#parcours [R=301,NE,L]
+RewriteRule ^hypnose/?$       /#hypnose  [R=301,NE,L]
+RewriteRule ^prendre-rdv/?$   /#rdv      [R=301,NE,L]
+
+# Ancien blog et anciens fichiers WordPress (spam) : supprimés définitivement
+RewriteRule ^(blog|feed|comments|wp-admin|wp-content|wp-includes|wp-json)(/.*)?$ - [G,L]
+RewriteRule ^(wp-login|xmlrpc)\.php$ - [G,L]
+
+# Pas de liste des fichiers du dossier
+Options -Indexes

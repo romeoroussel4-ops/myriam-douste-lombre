@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    # Dossier du site sur o2switch (à adapter si le domaine a son propre dossier)
+    - export DEPLOYPATH=$HOME/public_html/
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
